@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Image.asset(
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
                 'ขอบคุณที่ใช้บริการ',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               const Text(
