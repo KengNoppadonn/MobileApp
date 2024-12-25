@@ -34,11 +34,11 @@ class _aboutPage2State extends State<aboutPage2> {
     // คำนวณเวลาที่ใช้ในการชาร์จ (ชั่วโมง)
     double chargingTime = energyRequired / (power * (chargeEfficiency / 100));
     setState(() {
-      time = chargingTime.toStringAsFixed(2) ;
+      time = chargingTime.toStringAsFixed(2);
     });
-    debugPrint(
-        "พลัง: ${targetSoc - currentSoc} kWh");
+    debugPrint("พลัง: ${targetSoc - currentSoc} kWh");
   }
+
 // 24.64  3.477
   double currentSoc = 20;
   double targetSoc = 50;
@@ -137,20 +137,51 @@ class _aboutPage2State extends State<aboutPage2> {
                 },
               ),
               const SizedBox(height: 12),
-              TextField(
-                controller: amp,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter your Charging rate (A)',
-                    hintText: 'Charging rate'),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: volt,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter your Voltage (V)',
-                    hintText: 'Voltage'),
+              Row(
+                children: [
+                  // TextField สำหรับกรอก Charging rate (A)
+                  Expanded(
+                    child: TextField(
+                      controller: amp,
+                      keyboardType:
+                          TextInputType.number, // ตัวเลือกให้ป้อนเฉพาะตัวเลข
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter your Charging rate (A)',
+                        hintText: 'Charging rate',
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          // ถ้าค่าที่กรอกเข้ามามีการเปลี่ยนแปลง
+                          // ก็จะทำการคำนวณหรืออัพเดทค่าที่ใช้ได้
+                          // สามารถเพิ่ม code สำหรับคำนวณหลังจากผู้ใช้กรอกค่าเสร็จ
+                        });
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                      width: 12), // เว้นระยะห่างระหว่างช่องกรอกข้อมูล
+                  // TextField สำหรับกรอก Voltage (V)
+                  Expanded(
+                    child: TextField(
+                      controller: volt,
+                      keyboardType:
+                          TextInputType.number, // ตัวเลือกให้ป้อนเฉพาะตัวเลข
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter your Voltage (V)',
+                        hintText: 'Voltage',
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          // ถ้าค่าที่กรอกเข้ามามีการเปลี่ยนแปลง
+                          // ก็จะทำการคำนวณหรืออัพเดทค่าที่ใช้ได้
+                          // สามารถเพิ่ม code สำหรับคำนวณหลังจากผู้ใช้กรอกค่าเสร็จ
+                        });
+                      },
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 12),
               TextField(
@@ -174,7 +205,6 @@ class _aboutPage2State extends State<aboutPage2> {
                   },
                   child: Text("Calculate")),
               Text("ใช้เวลา $time ชั่วโมง"),
-              
             ],
           ),
         ),
